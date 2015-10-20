@@ -1,20 +1,18 @@
-// YOUR CODE HERE:
-
 
 var app = {
   server: 'https://api.parse.com/1/classes/chatterbox',
   data: null,
-  rooms: {
-  },
+  rooms: {},
   clearMessages: function() {
     $('.chat').children().remove();
   },
   addMessage: function(messageObj) {
     var username = xssFilters.inHTMLData(messageObj.username);
     var text = xssFilters.inHTMLData(messageObj.text);
+    var room = xssFilters.inHTMLData(messageObj.roomname);
     // Use the escape function here on text and username
     //Convert to html element
-    $('.chat').append("<div class='row message'>" +
+    $('.chat').append("<div class='row message' id='" + room + "'>" +
      "<div class='username col-sm-3 col-md-3 col-lg-3'>" +
       username + "</div>" +
       "<div class='col-sm-9 col-md-9 col-lg-9 text'>" + 
@@ -23,13 +21,13 @@ var app = {
   },
   addRoom: function(roomName) {
     var room = xssFilters.inHTMLData(roomName);
-    if (!!!roomName === false) {
-      app.rooms.misc = true;
-      $('#roomSelect').append("<option value='misc'></option>");
-    } else if (!_.contains(app.rooms, room)) {
-      app.rooms[room] = true;
-      $('#roomSelect').append("<option value=" + room + "></option>");
-    } 
+
+    if (!app.rooms[room]) {
+      app.rooms[room] = 1;
+      $('.sidebar').append("<div class=" + room + "'>" + room + "</div>");
+    } else {
+      app.rooms[room]++;
+    }
   },
   fetch: function() {
     // Get messages
@@ -39,10 +37,13 @@ var app = {
       contentType: 'application/jsonp',
       success: function (data) {
         app.data = Array.prototype.slice.call(data.results);
-        // toHtml(app.data[0]);
         app.data.forEach(function(el) {
           app.addMessage(el);
-          app.addRoom(el.roomname);
+          if (el.roomname === undefined || el.roomname === null) {
+            app.addRoom('general');
+          } else {
+            app.addRoom(el.roomname);
+          }
         });
       },
       error: function (data) {
@@ -73,5 +74,12 @@ var app = {
 };
 
 app.init();
+
+$('.sidebar').children().mouseover(function(el) {
+  el.addClass('.sidebar-hidden');
+});
+
+
+
 
 

@@ -21,7 +21,11 @@ html, body {
   height: 500px;
 }
 
-.rooms {
+.sidebar {
+  font-style: Helvetica;
+  font-weight: lighter;
+  font-size: 20px;
+  padding: 15px;
   background-color: #999;
   height: 450px;
 }
@@ -57,4 +61,8 @@ html, body {
 .text {
   text-align: left;
   font-size: 12px;
+}
+
+.sidebar-hidden {
+  background-color: #333;
 }
