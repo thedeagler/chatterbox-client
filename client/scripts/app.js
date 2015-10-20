@@ -8,19 +8,16 @@ var app = {
     $('.chat').children().remove();
   },
   addMessage: function(messageObj) {
-    var username = xssFilters.inHTMLData(messageObj["username"]);
-    var text = xssFilters.inHTMLData(messageObj["text"]);
+    var username = xssFilters.inHTMLData(messageObj.username);
+    var text = xssFilters.inHTMLData(messageObj.text);
     // Use the escape function here on text and username
     //Convert to html element
-    $('.chat').append("<div class='row message'>"
-          + "<div class='username col-sm-3 col-md-3 col-lg-3'>" 
-          + username 
-          + "</div>"
-          + "<div class='col-sm-9 col-md-9 col-lg-9 text'>" 
-          + text 
-          + "</div>"
-        + "</div>"
-        );
+    $('.chat').append("<div class='row message'>" +
+     "<div class='username col-sm-3 col-md-3 col-lg-3'>" +
+      username + "</div>" +
+      "<div class='col-sm-9 col-md-9 col-lg-9 text'>" + 
+      text + "</div>" + "</div>"
+    );
   },
   fetch: function() {
     // Get messages
@@ -62,10 +59,4 @@ var app = {
   },
 };
 
-
-function loadAll(array) {
-  array.forEach(function(el) {
-    app.addMessage(el);
-  })
-}
 
