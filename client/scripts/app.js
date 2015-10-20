@@ -4,6 +4,8 @@
 var app = {
   server: 'https://api.parse.com/1/classes/chatterbox',
   data: null,
+  rooms: {
+  },
   clearMessages: function() {
     $('.chat').children().remove();
   },
@@ -19,6 +21,16 @@ var app = {
       text + "</div>" + "</div>"
     );
   },
+  addRoom: function(roomName) {
+    var room = xssFilters.inHTMLData(roomName);
+    if (!!!roomName === false) {
+      app.rooms.misc = true;
+      $('#roomSelect').append("<option value='misc'></option>");
+    } else if (!_.contains(app.rooms, room)) {
+      app.rooms[room] = true;
+      $('#roomSelect').append("<option value=" + room + "></option>");
+    } 
+  },
   fetch: function() {
     // Get messages
     $.ajax({
@@ -30,6 +42,7 @@ var app = {
         // toHtml(app.data[0]);
         app.data.forEach(function(el) {
           app.addMessage(el);
+          app.addRoom(el.roomname);
         });
       },
       error: function (data) {
@@ -58,5 +71,7 @@ var app = {
     app.fetch();
   },
 };
+
+app.init();
 
 
