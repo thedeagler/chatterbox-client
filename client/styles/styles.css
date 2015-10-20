@@ -1,5 +1,7 @@
 html, body {
   height:100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .banner-container {
@@ -27,6 +29,7 @@ html, body {
 .chat {
   background-color: #eee;
   height: 450px;
+  overflow-y: scroll;
 }
 
 .bottom-bar {
@@ -39,4 +42,19 @@ html, body {
 
 .message-entry{
   text-align: right;
+}
+
+.message {
+  height: 40px;
+  border: 1px solid white;
+}
+
+.username {
+  font-weight: bold;
+  text-align: right;
+}
+
+.text {
+  text-align: left;
+  font-size: 12px;
 }
