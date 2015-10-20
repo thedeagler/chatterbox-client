@@ -1,21 +1,42 @@
-
-
-.sidebar {
-  border: 1px solid black;
-  background-color: gray;
-  height: 800px;
+html, body {
+  height:100%;
 }
 
-.body-container * {
-max-height: 800px;
+.banner-container {
+  background-image: url(https://unsplash.it/g/1500/150/?random);
+    text-shadow: 2px 3px 4px #333;
+    width: 100%;
+    color: #fff;
+    min-height: 150px;
+    text-align: center;
+    padding-top: 25px;
 }
 
 .body-container {
-  margin-left: 100px;
-  margin-right: 100px;
+  padding-top: 25px;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 500px;
 }
+
+.sidebar {
+  background-color: #999;
+  height: 450px;
+}
+
 .chat {
-  max-height: 800px;
-  border: 1px solid black;
-  overflow-y: scroll;
+  background-color: #eee;
+  height: 450px;
+}
+
+.bottom-bar {
+  padding-top: 25px;
+}
+
+.username-entry{
+  text-align: center;
+}
+
+.message-entry{
+  text-align: right;
 }
