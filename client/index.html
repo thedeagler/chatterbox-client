@@ -15,12 +15,31 @@
     <script src="scripts/app.js"></script>
   </head>
   <body>
-    <div class="body-container row">
-      <div class="col-md-3 col-lg-3"></div>
-      <div class="row center-container col-md-6 col-lg-6">
-        <div class="sidebar col-md-4 col-lg-4">sidebar</div>
-        <div class="chat col-md-8 col-lg-8"></div>
+    <div class="banner container">
+      <h1 class="row">
+        <div class="col-md-12"></div>
+        <span class="title">chatterbox</span>
+      </h1>
+    </div>
+
+    <div class="body-container">
+      <div class='row'>
+          <div class="sidebar col-md-4 col-lg-4">sidebar</div>
+          <div class="chat col-md-8 col-lg-8"></div>
       </div>
-      <div class="col-md-3 col-lg-3"></div>
+
+      <div class="row">
+        <div class="col-md-3 col-lg-3">
+          <div class="input-group">
+            <!-- <div class="input-group-addon">@</div>
+            <input type="text" class="form-control entered-username" placeholder='username'></input> -->
+          </div>
+        </div>
+
+        <input type="text" class="form-control entered-text col-md-6 col-lg-6" placeholder='message'></input>
+
+        <button type='submit' class='col-md-3 col-lg-3'>Send</button>
+      </div>
+    </div>
   </body>
 </html>

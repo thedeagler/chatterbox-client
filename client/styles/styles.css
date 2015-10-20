@@ -3,9 +3,19 @@
 .sidebar {
   border: 1px solid black;
   background-color: gray;
-  height: 1000px;
+  height: 800px;
 }
 
+.body-container * {
+max-height: 800px;
+}
+
+.body-container {
+  margin-left: 100px;
+  margin-right: 100px;
+}
 .chat {
+  max-height: 800px;
   border: 1px solid black;
+  overflow-y: scroll;
 }
