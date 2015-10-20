@@ -18,7 +18,7 @@ var app = {
       text = "<strong>" + text + "</strong>";
     }
     $('.chat').append("<div class='row message room-" + room + "'>" +
-     "<div class='username col-sm-3 col-md-3 col-lg-3'>" +
+     "<div class='username col-sm-3 col-md-3 col-lg-3 " + username + "'>" + 
       username + "</div>" +
       "<div class='col-sm-9 col-md-9 col-lg-9 text'>" + 
       text + "</div>" + "</div>"
@@ -51,6 +51,7 @@ var app = {
           }
           app.addMessage(el);
         });
+        app.displayFriends();
       },
       error: function (data) {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -76,6 +77,11 @@ var app = {
       }
     });
   },
+  displayFriends: function() {
+    for (var username in app.friends) {
+      $('.' + username).addClass('friends');
+    }
+  },
   init: function() {
     app.fetch();
   },
@@ -83,9 +89,7 @@ var app = {
 
 app.init();
 
-$('.sidebar').children().mouseover(function(el) {
-  el.addClass('.sidebar-hidden');
-});
+
 
 
 

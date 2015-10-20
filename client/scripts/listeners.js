@@ -21,26 +21,14 @@ $(document).ready(function() {
     app.send(message);
   })
 
-  $('.chat').on('click', '.username', function(e) {
-    app.friends[$(this).text()] = true;
-    boldFriends($(this));
+  $('.chat').on('click', '.username', function() {
+    var username = xssFilters.inHTMLData($(this).text());
+    var rest = $('.' + username);
+    rest.addClass('friends');
   })
 
-
+  $('.sidebar').children().mouseover(function(el) {
+    el.addClass('.sidebar-hidden');
+  });
 
 })
-
-function boldFriends(that) {
-  // take div, get its text
-  var username = that.text();
-  // grab all usernames that match
-  // debugger;
-  $('.username').forEach(function(index){
-    debugger;
-    if ($('.username')[index].text() === username){
-        $('.username')[index].parent().style('background-color', '#fff');
-    }
-  });
-    // select their parents
-    // apply style changes
-}

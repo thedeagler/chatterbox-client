@@ -72,4 +72,10 @@ html, body {
 
 .roomname-entry {
   text-align: center;
+  font-style: Helvetica;
+  font-weight: lighter;
+}
+
+.friends {
+  color: #5D92B1;
 }
