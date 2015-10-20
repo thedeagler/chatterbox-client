@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>chatterbox</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="styles/styles.css">
 
     <!-- dependencies -->
+    <script src="../node_modules/xss-filters/dist/xss-filters.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <!-- your scripts -->
@@ -13,10 +15,12 @@
     <script src="scripts/app.js"></script>
   </head>
   <body>
-    <div id="main">
-      <h1>chatterbox</h1>
-      <!-- Your HTML goes here! -->
-    </div>
-    <div id="chats"></div>
+    <div class="body-container row">
+      <div class="col-md-3 col-lg-3"></div>
+      <div class="row center-container col-md-6 col-lg-6">
+        <div class="sidebar col-md-4 col-lg-4">sidebar</div>
+        <div class="chat col-md-8 col-lg-8"></div>
+      </div>
+      <div class="col-md-3 col-lg-3"></div>
   </body>
 </html>
