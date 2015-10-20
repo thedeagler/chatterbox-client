@@ -1,8 +1,10 @@
 
 var app = {
+  username: '',
   server: 'https://api.parse.com/1/classes/chatterbox',
   data: null,
   rooms: {},
+  friends: {},
   clearMessages: function() {
     $('.chat').children().remove();
   },
@@ -12,7 +14,10 @@ var app = {
     var room = xssFilters.inHTMLData(messageObj.roomname);
     // Use the escape function here on text and username
     //Convert to html element
-    $('.chat').append("<div class='row message' id='" + room + "'>" +
+    if (app.friends.hasOwnProperty(username)) {
+      text = "<strong>" + text + "</strong>";
+    }
+    $('.chat').append("<div class='row message room-" + room + "'>" +
      "<div class='username col-sm-3 col-md-3 col-lg-3'>" +
       username + "</div>" +
       "<div class='col-sm-9 col-md-9 col-lg-9 text'>" + 
@@ -24,7 +29,7 @@ var app = {
 
     if (!app.rooms[room]) {
       app.rooms[room] = 1;
-      $('.sidebar').append("<div class=" + room + "'>" + room + "</div>");
+      $('.sidebar').append("<div class='room-title " + room + "'>" + room + "</div>");
     } else {
       app.rooms[room]++;
     }
@@ -38,12 +43,13 @@ var app = {
       success: function (data) {
         app.data = Array.prototype.slice.call(data.results);
         app.data.forEach(function(el) {
-          app.addMessage(el);
-          if (el.roomname === undefined || el.roomname === null) {
+          if (!!!el.roomname) {
+            el.roomname = 'general';
             app.addRoom('general');
           } else {
             app.addRoom(el.roomname);
           }
+          app.addMessage(el);
         });
       },
       error: function (data) {
@@ -60,7 +66,9 @@ var app = {
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
+
         console.log('chatterbox: Message sent');
+        console.dir(message);
       },
       error: function (data) {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
